@@ -14,7 +14,7 @@
 
 import sys
 import os
-from pathlib import Path
+#from pathlib import Path
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -82,7 +82,7 @@ html_static_path = ["_static"]
 # -- Options for JupyterLite ----------------------------------------------
 jupyterlite_contents = ["tutorials/intro_tutorial.ipynb"]
 
-jupyterlite_dir = str(Path(__file__).parent.parent / 'build')
+#jupyterlite_dir = str(Path(__file__).parent.parent / 'build')
 
 jupyterlite_bind_ipynb_suffix = False
 
