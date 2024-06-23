@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "Mesa-Geo"
 description = "GIS Agent-based modeling (ABM) in Python"
 license = { text = "Apache 2.0" }
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 authors = [
   { name = "Project Mesa Team", email = "projectmesa@googlegroups.com" },
 ]
