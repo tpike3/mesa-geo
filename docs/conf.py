@@ -77,8 +77,6 @@ pygments_style = "sphinx"
 
 html_theme = "alabaster"
 
-html_static_path = ["_static"]
-
 # -- Options for JupyterLite ----------------------------------------------
 jupyterlite_contents = ["tutorials/intro_tutorial.ipynb"]
 
