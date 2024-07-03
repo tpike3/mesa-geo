@@ -9,8 +9,6 @@ from solara.alias import rv
 
 import mesa_geo.visualization.leaflet_viz as leaflet_viz
 
-# TODO FIX for MESA GEO
-
 # Avoid interactive backend
 plt.switch_backend("agg")
 
@@ -20,10 +18,15 @@ plt.switch_backend("agg")
 """
 Geo-Mesa Visualization Module
 =============================
+<<<<<<< HEAD
 
 Card: Helper Function that initiates the Solara Card for Browser
 GeoJupyterViz: Main Function users employ to create visualization
 
+=======
+Card: Helper Function that initiates the Solara Card for Browser
+GeoJupyterViz: Main Function users employ to create visualization
+>>>>>>> main
 """
 
 

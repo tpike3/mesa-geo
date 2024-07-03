@@ -269,6 +269,8 @@ target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
+*.virtual_documents
+
 
 # pyenv
 .python-version

@@ -1,6 +1,7 @@
 import unittest
 
 import geopandas as gpd
+import mesa
 import pandas as pd
 from shapely.geometry import Point
 
@@ -9,8 +10,13 @@ import mesa_geo as mg
 
 class TestAgentCreator(unittest.TestCase):
     def setUp(self) -> None:
-        self.agent_creator_without_crs = mg.AgentCreator(agent_class=mg.GeoAgent)
+        self.model = mesa.Model()
+        self.model.space = mg.GeoSpace(crs="epsg:4326")
+        self.agent_creator_without_crs = mg.AgentCreator(
+            agent_class=mg.GeoAgent, model=self.model
+        )
         self.agent_creator_with_crs = mg.AgentCreator(
+            model=self.model,
             agent_class=mg.GeoAgent,
             crs="epsg:3857",
         )
@@ -53,7 +59,7 @@ class TestAgentCreator(unittest.TestCase):
         )
         self.assertIsInstance(agent, mg.GeoAgent)
         self.assertEqual(agent.geometry, Point(1, 1))
-        self.assertIsNone(agent.model)
+        self.assertEqual(agent.model, self.model)
         self.assertEqual(agent.crs, self.agent_creator_with_crs.crs)
 
     def test_create_agent_without_crs(self):
