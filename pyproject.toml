@@ -68,7 +68,6 @@ docs = [
   "pydata_sphinx_theme",
   "seaborn",
   "myst-nb",
-  "myst-parser",         # Markdown in Sphinx
   "jupyterlite_sphinx",
   "jupyterlite-xeus>=0.2.0a0",
   "jupyter_bridge"

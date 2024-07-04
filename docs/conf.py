@@ -13,14 +13,18 @@
 # serve to show the default.
 
 import sys
-import os
-#from pathlib import Path
+from pathlib import Path
+
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use Path.resolve() to make it absolute, like shown here.
-#sys.path.insert(0, os.path.abspath('.'))
-sys.path.insert(0, os.path.abspath('.'))
+current_path = Path(__file__).parent.resolve()
+
+# Insert the resolved absolute paths into sys.path
+sys.path.insert(0, str(current_path/"examples"))
+sys.path.insert(0, str(current_path/"tutorials"))
+sys.path.insert(0, str(current_path.parent))
 
 # -- General configuration ------------------------------------------------
 
@@ -31,7 +35,6 @@ sys.path.insert(0, os.path.abspath('.'))
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    "myst_nb",
     "sphinx.ext.autodoc",
     "sphinx.ext.doctest",
     "sphinx.ext.intersphinx",
@@ -40,7 +43,7 @@ extensions = [
     "sphinx.ext.mathjax",
     "sphinx.ext.ifconfig",
     "sphinx.ext.viewcode",
-    "jupyterlite_sphinx"
+    "myst_nb",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -76,19 +79,6 @@ pygments_style = "sphinx"
 # -- Options for HTML output ----------------------------------------------
 
 html_theme = "alabaster"
-
-# -- Options for JupyterLite ----------------------------------------------
-jupyterlite_contents = ["tutorials/intro_tutorial.ipynb"]
-
-#jupyterlite_dir = str(Path(__file__).parent.parent / 'build')
-
-jupyterlite_bind_ipynb_suffix = False
-
-jupyterlite_build_command_options = {
-    "XeusAddon.environment_file": "environment.yml",
-    }
-
-jupyterlite_silence=False
 
 latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').

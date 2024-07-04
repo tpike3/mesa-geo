@@ -18,7 +18,7 @@ from mesa_geo.tile_layers import LeafletOption, RasterWebTile
 
 
 @solara.component
-def map(model, map_drawer, zoom, center_default):
+def map(model, map_drawer, zoom, center_default, scroll_wheel_zoom):
     # render map in browser
     zoom_map = solara.reactive(zoom)
     center = solara.reactive(center_default)
@@ -29,16 +29,17 @@ def map(model, map_drawer, zoom, center_default):
     ipyleaflet.Map.element(
         zoom=zoom_map.value,
         center=center.value,
-        scroll_wheel_zoom=True,
+        scroll_wheel_zoom=scroll_wheel_zoom,
         layers=[
             ipyleaflet.TileLayer.element(url=base_map["url"]),
-            ipyleaflet.GeoJSON.element(data=layers["agents"]),
+            ipyleaflet.GeoJSON.element(data=layers["agents"][0]),
+            *layers["agents"][1],
         ],
     )
 
 
 @solara.component
-def map_jupyter(model, map_drawer, zoom, center_default):
+def map_jupyter(model, map_drawer, zoom, center_default, scroll_wheel_zoom):
     zoom_map = solara.reactive(zoom)
     center = solara.reactive(center_default)
 
@@ -50,10 +51,11 @@ def map_jupyter(model, map_drawer, zoom, center_default):
         ipyleaflet.Map.element(
             zoom=zoom_map.value,
             center=center.value,
-            scroll_wheel_zoom=True,
+            scroll_wheel_zoom=scroll_wheel_zoom,
             layers=[
                 ipyleaflet.TileLayer.element(url=base_map["url"]),
-                ipyleaflet.GeoJSON.element(data=layers["agents"]),
+                ipyleaflet.GeoJSON.element(data=layers["agents"][0]),
+                *layers["agents"][1],
             ],
         )
 
@@ -67,7 +69,6 @@ class LeafletViz:
     """
 
     style: dict[str, LeafletOption] | None = None
-    pointToLayer: dict[str, LeafletOption] | None = None  # noqa: N815
     popupProperties: dict[str, LeafletOption] | None = None  # noqa: N815
 
 
@@ -88,6 +89,7 @@ class MapModule:
         portrayal_method,
         view,
         zoom,
+        scroll_wheel_zoom,
         tiles,
     ):
         """
@@ -183,31 +185,96 @@ class MapModule:
             ]
         return layers
 
+    def _get_marker(self, location, properties):
+        """
+        takes point objects and transforms them to ipyleaflet marker objects
+
+        allowed marker types are point marker types from ipyleaflet
+        https://ipyleaflet.readthedocs.io/en/latest/layers/index.html
+
+        default is circle with radius 5
+
+        Parameters
+        ----------
+        location: iterable
+            iterable of location in models geometry
+
+        properties : dict
+            properties passed in through agent portrayal
+
+        icon_properties: dict
+            properties stored in dictionary in properties that passes icon
+            properties per ipyleaflet
+            Icon: https://ipyleaflet.readthedocs.io/en/latest/layers/icon.html
+            AwesomeIcon: https://ipyleaflet.readthedocs.io/en/latest/layers/awesome_icon.html
+
+        Returns
+        -------
+        ipyleaflet marker element
+
+        """
+
+        if "marker_type" not in properties:  # make circle default marker type
+            properties["marker_type"] = "Circle"
+            properties["radius"] = 5
+
+        marker = properties["marker_type"]
+        if marker == "Circle":
+            return ipyleaflet.Circle(location=location, **properties)
+        elif marker == "CircleMarker":
+            return ipyleaflet.CircleMarker(location=location, **properties)
+        elif marker == "Marker":
+            return ipyleaflet.Marker(location=location, **properties)
+        elif marker == "Icon":
+            icon_url = properties["icon_url"]
+            icon_size = properties.get("icon_size", [20, 20])
+            icon_properties = properties.get("icon_properties", {})
+            icon = ipyleaflet.Icon(
+                icon_url=icon_url, icon_size=icon_size, **icon_properties
+            )
+            return ipyleaflet.Marker(location=location, icon=icon, **properties)
+        elif marker == "AwesomeIcon":
+            name = properties["name"]
+            icon_properties = properties.get("icon_properties", {})
+            icon = ipyleaflet.AwesomeIcon(name=name, **icon_properties)
+            return ipyleaflet.Marker(location=location, icon=icon, **properties)
+
+        else:
+            raise ValueError(
+                f"Unsupported marker type:{marker}",
+            )
+
     def _render_agents(self, model):
         feature_collection = {"type": "FeatureCollection", "features": []}
+        point_markers = []
+        agent_portrayal = {}
         for agent in model.space.agents:
             transformed_geometry = agent.get_transformed_geometry(
                 model.space.transformer
             )
-            agent_portrayal = {}
+
             if self.portrayal_method:
                 properties = self.portrayal_method(agent)
                 agent_portrayal = LeafletViz(
                     popupProperties=properties.pop("description", None)
                 )
                 if isinstance(agent.geometry, Point):
-                    agent_portrayal.pointToLayer = properties
+                    location = mapping(transformed_geometry)
+                    # for some reason points are reversed
+                    location = (location["coordinates"][1], location["coordinates"][0])
+                    point_markers.append(self._get_marker(location, properties))
                 else:
                     agent_portrayal.style = properties
-                agent_portrayal = dataclasses.asdict(
-                    agent_portrayal,
-                    dict_factory=lambda x: {k: v for (k, v) in x if v is not None},
-                )
-            feature_collection["features"].append(
-                {
-                    "type": "Feature",
-                    "geometry": mapping(transformed_geometry),
-                    "properties": agent_portrayal,
-                }
-            )
-        return feature_collection
+                    agent_portrayal = dataclasses.asdict(
+                        agent_portrayal,
+                        dict_factory=lambda x: {k: v for (k, v) in x if v is not None},
+                    )
+
+                    feature_collection["features"].append(
+                        {
+                            "type": "Feature",
+                            "geometry": mapping(transformed_geometry),
+                            "properties": agent_portrayal,
+                        }
+                    )
+        return [feature_collection, point_markers]
