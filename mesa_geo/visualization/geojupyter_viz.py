@@ -130,9 +130,12 @@ def GeoJupyterViz(
 
     # determine center point
     if center_point:
+        print("None Called")
         center_default = center_point
     else:
+        print(layers)
         bounds = layers["layers"]["total_bounds"]
+        print(bounds)
         center_default = list((bounds[2:] + bounds[:2]) / 2)
 
     def render_in_jupyter():
