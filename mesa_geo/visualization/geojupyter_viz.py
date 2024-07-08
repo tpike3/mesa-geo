@@ -133,10 +133,11 @@ def GeoJupyterViz(
         print("None Called")
         center_default = center_point
     else:
-        print(layers)
         bounds = layers["layers"]["total_bounds"]
-        print(bounds)
-        center_default = list((bounds[2:] + bounds[:2]) / 2)
+        center_default = [
+            (bounds[0][0] + bounds[1][0]) / 2,
+            (bounds[0][1] + bounds[1][1]) / 2,
+        ]
 
     def render_in_jupyter():
         # TODO: Build API to allow users to set rows and columns
