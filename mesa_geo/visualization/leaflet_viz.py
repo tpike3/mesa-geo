@@ -186,7 +186,7 @@ class MapModule:
 
     def _get_marker(self, location, properties):
         """
-        takes point objects and tranforms them to ipyleaflet marker objects
+        takes point objects and transforms them to ipyleaflet marker objects
 
         allowed marker types are point marker types from ipyleaflet
         https://ipyleaflet.readthedocs.io/en/latest/layers/index.html
@@ -227,11 +227,12 @@ class MapModule:
     def _render_agents(self, model):
         feature_collection = {"type": "FeatureCollection", "features": []}
         point_markers = []
+        agent_portrayal = {}
         for agent in model.space.agents:
             transformed_geometry = agent.get_transformed_geometry(
                 model.space.transformer
             )
-            agent_portrayal = {}
+
             if self.portrayal_method:
                 properties = self.portrayal_method(agent)
                 agent_portrayal = LeafletViz(
@@ -244,15 +245,16 @@ class MapModule:
                     point_markers.append(self._get_marker(location, properties))
                 else:
                     agent_portrayal.style = properties
-                    agent_portrayal = dataclasses.asdict(
-                        agent_portrayal,
-                        dict_factory=lambda x: {k: v for (k, v) in x if v is not None},
-                    )
-                    feature_collection["features"].append(
-                        {
-                            "type": "Feature",
-                            "geometry": mapping(transformed_geometry),
-                            "properties": agent_portrayal,
-                        }
-                    )
+                agent_portrayal = dataclasses.asdict(
+                    agent_portrayal,
+                    dict_factory=lambda x: {k: v for (k, v) in x if v is not None},
+                )
+
+            feature_collection["features"].append(
+                {
+                    "type": "Feature",
+                    "geometry": mapping(transformed_geometry),
+                    "properties": agent_portrayal,
+                }
+            )
         return [feature_collection, point_markers]
