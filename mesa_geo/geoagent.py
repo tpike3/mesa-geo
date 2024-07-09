@@ -35,7 +35,7 @@ class GeoAgent(Agent, GeoBase):
         :param crs: The coordinate reference system of the geometry.
         """
 
-        Agent.__init__(self, unique_id, model)
+        super().__init__(unique_id, model)
         GeoBase.__init__(self, crs=crs)
         self.geometry = geometry
 
