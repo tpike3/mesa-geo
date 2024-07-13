@@ -245,16 +245,16 @@ class MapModule:
                     point_markers.append(self._get_marker(location, properties))
                 else:
                     agent_portrayal.style = properties
-                agent_portrayal = dataclasses.asdict(
-                    agent_portrayal,
-                    dict_factory=lambda x: {k: v for (k, v) in x if v is not None},
-                )
+                    agent_portrayal = dataclasses.asdict(
+                        agent_portrayal,
+                        dict_factory=lambda x: {k: v for (k, v) in x if v is not None},
+                    )
 
-            feature_collection["features"].append(
-                {
-                    "type": "Feature",
-                    "geometry": mapping(transformed_geometry),
-                    "properties": agent_portrayal,
-                }
-            )
+                    feature_collection["features"].append(
+                        {
+                            "type": "Feature",
+                            "geometry": mapping(transformed_geometry),
+                            "properties": agent_portrayal,
+                        }
+                    )
         return [feature_collection, point_markers]
