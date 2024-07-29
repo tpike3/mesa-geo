@@ -18,7 +18,7 @@ from mesa_geo.tile_layers import LeafletOption, RasterWebTile
 
 
 @solara.component
-def map(model, map_drawer, zoom, center_default):
+def map(model, map_drawer, zoom, center_default, scroll_wheel_zoom):
     # render map in browser
     zoom_map = solara.reactive(zoom)
     center = solara.reactive(center_default)
@@ -29,7 +29,7 @@ def map(model, map_drawer, zoom, center_default):
     ipyleaflet.Map.element(
         zoom=zoom_map.value,
         center=center.value,
-        scroll_wheel_zoom=True,
+        scroll_wheel_zoom=scroll_wheel_zoom,
         layers=[
             ipyleaflet.TileLayer.element(url=base_map["url"]),
             ipyleaflet.GeoJSON.element(data=layers["agents"][0]),
@@ -39,7 +39,7 @@ def map(model, map_drawer, zoom, center_default):
 
 
 @solara.component
-def map_jupyter(model, map_drawer, zoom, center_default):
+def map_jupyter(model, map_drawer, zoom, center_default, scroll_wheel_zoom):
     zoom_map = solara.reactive(zoom)
     center = solara.reactive(center_default)
 
@@ -51,7 +51,7 @@ def map_jupyter(model, map_drawer, zoom, center_default):
         ipyleaflet.Map.element(
             zoom=zoom_map.value,
             center=center.value,
-            scroll_wheel_zoom=True,
+            scroll_wheel_zoom=scroll_wheel_zoom,
             layers=[
                 ipyleaflet.TileLayer.element(url=base_map["url"]),
                 ipyleaflet.GeoJSON.element(data=layers["agents"][0]),
@@ -89,6 +89,7 @@ class MapModule:
         portrayal_method,
         view,
         zoom,
+        scroll_wheel_zoom,
         tiles,
     ):
         """
@@ -201,6 +202,11 @@ class MapModule:
         properties : dict
             properties passed in through agent portrayal
 
+        icon_properties: dict
+            properties stored in dictionary in properties that passes icon
+            properties per ipyleaflet
+            Icon: https://ipyleaflet.readthedocs.io/en/latest/layers/icon.html
+            AwesomeIcon: https://ipyleaflet.readthedocs.io/en/latest/layers/awesome_icon.html
 
         Returns
         -------
@@ -217,8 +223,22 @@ class MapModule:
             return ipyleaflet.Circle(location=location, **properties)
         elif marker == "CircleMarker":
             return ipyleaflet.CircleMarker(location=location, **properties)
-        elif marker == "Marker" or marker == "Icon" or marker == "AwesomeIcon":
+        elif marker == "Marker":
             return ipyleaflet.Marker(location=location, **properties)
+        elif marker == "Icon":
+            icon_url = properties["icon_url"]
+            icon_size = properties.get("icon_size", [20, 20])
+            icon_properties = properties.get("icon_properties", {})
+            icon = ipyleaflet.Icon(
+                icon_url=icon_url, icon_size=icon_size, **icon_properties
+            )
+            return ipyleaflet.Marker(location=location, icon=icon, **properties)
+        elif marker == "AwesomeIcon":
+            name = properties["name"]
+            icon_properties = properties.get("icon_properties", {})
+            icon = ipyleaflet.AwesomeIcon(name=name, **icon_properties)
+            return ipyleaflet.Marker(location=location, icon=icon, **properties)
+
         else:
             raise ValueError(
                 f"Unsupported marker type:{marker}",

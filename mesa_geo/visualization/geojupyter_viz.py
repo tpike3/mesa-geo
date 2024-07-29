@@ -72,6 +72,7 @@ def GeoJupyterViz(
     # parameters for leaflet_viz
     view=None,
     zoom=None,
+    scroll_wheel_zoom=True,
     tiles=xyz.OpenStreetMap.Mapnik,
     center_point=None,  # Due to projection challenges in calculation allow user to specify center point
 ):
@@ -125,6 +126,7 @@ def GeoJupyterViz(
         view=view,
         zoom=zoom,
         tiles=tiles,
+        scroll_wheel_zoom=scroll_wheel_zoom,
     )
     layers = map_drawer.render(model)
 
@@ -151,7 +153,9 @@ def GeoJupyterViz(
             solara.Markdown(md_text=f"###Step - {current_step}")
 
         # Builds Solara component of map
-        leaflet_viz.map_jupyter(model, map_drawer, zoom, center_default)
+        leaflet_viz.map_jupyter(
+            model, map_drawer, zoom, center_default, scroll_wheel_zoom
+        )
 
         # Place measurement in separate row
         with solara.Row(
