@@ -69,9 +69,9 @@ hidden: true
 ---
 
 Introduction <self>
-Introductory Tutorial <tutorials/overview.md>
-Examples <examples/overview.md>
-API Documentation <apis/api_main.md>
+Introductory Tutorial <../tutorials/overview.md>
+Examples <../examples/overview.md>
+API Documentation <../apis/api_main.md>
 
 ```
 

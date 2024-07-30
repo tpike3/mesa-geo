@@ -18,10 +18,17 @@ from pathlib import Path
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use Path.resolve() to make it absolute, like shown here.
-sys.path.insert(0, str(Path(".").resolve()))
-sys.path.insert(0, "../examples")
-sys.path.insert(0, "../mesa_geo")
+current_path = Path(__file__).parent.resolve()
 
+# Insert the resolved absolute paths into sys.path
+sys.path.insert(0, str(current_path.parent / "examples"))
+sys.path.insert(0, str(current_path.parent / "tutorials"))
+sys.path.insert(0, current_path.parent.parent)
+
+print("HERE I AM")
+print(sys.path)
+print(current_path)
+print(current_path.parent.parent)
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -78,7 +85,7 @@ pygments_style = "sphinx"
 html_theme = "alabaster"
 
 # -- Options for JupyterLite ----------------------------------------------
-jupyterlite_contents = ["tutorials/intro_tutorial.ipynb"]
+jupyterlite_contents = [str(current_path.parent / "tutorials/intro_tutorial.ipynb")]
 
 #jupyterlite_dir = str(Path(__file__).parent.parent / 'build')
 
