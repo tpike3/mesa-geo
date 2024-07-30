@@ -92,7 +92,7 @@ jupyterlite_contents = [str(current_path.parent / "tutorials/intro_tutorial.ipyn
 jupyterlite_bind_ipynb_suffix = False
 
 jupyterlite_build_command_options = {
-    "XeusAddon.environment_file": "environment.yml",
+    "XeusAddon.environment_file": "source/environment.yml",
     }
 
 jupyterlite_silence=False
