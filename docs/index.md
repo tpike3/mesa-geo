@@ -35,7 +35,7 @@ pip install -e git+https://github.com/projectmesa/mesa-geo.git#egg=mesa-geo
 
 For more help on using Mesa-Geo, check out the following resources:
 
-- [Introductory Tutorial](tutorials/overview.md)
+- [Introductory Tutorial](../tutorials/overview.md)
 - [Examples](examples/overview.md)
 - [API Documentation](apis/api_main.md)
 - [Discussions](https://github.com/projectmesa/mesa/discussions)

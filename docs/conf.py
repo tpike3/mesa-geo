@@ -21,14 +21,14 @@ from pathlib import Path
 current_path = Path(__file__).parent.resolve()
 
 # Insert the resolved absolute paths into sys.path
-sys.path.insert(0, str(current_path.parent / "examples"))
-sys.path.insert(0, str(current_path.parent / "tutorials"))
-sys.path.insert(0, current_path.parent.parent)
+sys.path.insert(0, str(current_path/"examples"))
+sys.path.insert(0, str(current_path/"tutorials"))
+sys.path.insert(0, current_path.parent)
 
 print("HERE I AM")
 print(sys.path)
 print(current_path)
-print(current_path.parent.parent)
+print(current_path.parent)
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -85,14 +85,14 @@ pygments_style = "sphinx"
 html_theme = "alabaster"
 
 # -- Options for JupyterLite ----------------------------------------------
-jupyterlite_contents = [str(current_path.parent / "tutorials/intro_tutorial.ipynb")]
+jupyterlite_contents = [str(current_path/"tutorials/intro_tutorial.ipynb")]
 
 #jupyterlite_dir = str(Path(__file__).parent.parent / 'build')
 
 jupyterlite_bind_ipynb_suffix = False
 
 jupyterlite_build_command_options = {
-    "XeusAddon.environment_file": "source/environment.yml",
+    "XeusAddon.environment_file": "environment.yml",
     }
 
 jupyterlite_silence=False
