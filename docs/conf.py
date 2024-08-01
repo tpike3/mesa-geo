@@ -30,21 +30,31 @@ print("HERE I AM")
 print(current_path)
 print(current_path.parent)
 
-def print_kernel_json():
+def update_kernel_name():
+    # Define the path to the kernel.json file
     kernel_json_path = Path('/home/docs/checkouts/readthedocs.org/user_builds/mesa-geo-test/conda/latest/share/jupyter/kernels/python3/kernel.json')
+
     try:
         if kernel_json_path.is_file():
+            # Open the kernel.json file and read its contents
             with open(kernel_json_path) as f:
                 kernel_data = json.load(f)
-                print("Contents of kernel.json:")
-                print(json.dumps(kernel_data, indent=4))
+
+            # Modify the kernel display name
+            kernel_data['display_name'] = "mesa_geo"
+
+            # Write the updated data back to the kernel.json file
+            with open(kernel_json_path, 'w') as f:
+                json.dump(kernel_data, f, indent=4)
+
+            print(f"Kernel display name updated to 'mesa_geo' in {kernel_json_path}")
         else:
             print(f"kernel.json not found at {kernel_json_path}")
     except Exception as e:
-        print(f"Error reading kernel.json: {e}")
+        print(f"Error updating kernel.json: {e}")
 
-# Call the function to print kernel.json contents
-print_kernel_json()
+# Call the function to update the kernel name
+update_kernel_name()
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
