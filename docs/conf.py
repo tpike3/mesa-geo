@@ -14,6 +14,7 @@
 
 import sys
 import json
+import os
 from pathlib import Path
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -30,31 +31,46 @@ print("HERE I AM")
 print(current_path)
 print(current_path.parent)
 
-def update_kernel_name():
-    # Define the path to the kernel.json file
-    kernel_json_path = Path('/home/docs/checkouts/readthedocs.org/user_builds/mesa-geo-test/conda/latest/share/jupyter/kernels/python3/kernel.json')
+def rename_kernel_directory_and_update_json():
+    base_path = Path('/home/docs/checkouts/readthedocs.org/user_builds/mesa-geo-test/conda/latest/share/jupyter/kernels/')
+    old_kernel_name = "python3"
+    new_kernel_name = "mesa_geo"
+
+    old_kernel_path = base_path / old_kernel_name
+    new_kernel_path = base_path / new_kernel_name
 
     try:
-        if kernel_json_path.is_file():
-            # Open the kernel.json file and read its contents
-            with open(kernel_json_path) as f:
-                kernel_data = json.load(f)
+        # Check if the old kernel directory exists
+        if old_kernel_path.is_dir():
+            # Rename the kernel directory
+            os.rename(old_kernel_path, new_kernel_path)
+            print(f"Renamed kernel directory from {old_kernel_name} to {new_kernel_name}")
 
-            # Modify the kernel display name
-            kernel_data['display_name'] = "mesa_geo"
+            # Path to the kernel.json file in the new directory
+            kernel_json_path = new_kernel_path / 'kernel.json'
 
-            # Write the updated data back to the kernel.json file
-            with open(kernel_json_path, 'w') as f:
-                json.dump(kernel_data, f, indent=4)
+            # Update the kernel.json file
+            if kernel_json_path.is_file():
+                with open(kernel_json_path) as f:
+                    kernel_data = json.load(f)
 
-            print(f"Kernel display name updated to 'mesa_geo' in {kernel_json_path}")
+                # Update the display name
+                kernel_data['display_name'] = new_kernel_name
+
+                # Write the changes back to the kernel.json file
+                with open(kernel_json_path, 'w') as f:
+                    json.dump(kernel_data, f, indent=4)
+
+                print(f"Updated display name in kernel.json to '{new_kernel_name}'")
+            else:
+                print(f"kernel.json not found at {kernel_json_path}")
         else:
-            print(f"kernel.json not found at {kernel_json_path}")
+            print(f"Old kernel directory '{old_kernel_name}' not found at {old_kernel_path}")
     except Exception as e:
-        print(f"Error updating kernel.json: {e}")
+        print(f"Error during kernel directory rename or update: {e}")
 
-# Call the function to update the kernel name
-update_kernel_name()
+# Call the function to rename the directory and update kernel.json
+rename_kernel_directory_and_update_json()
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
