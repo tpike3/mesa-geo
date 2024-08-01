@@ -26,9 +26,14 @@ sys.path.insert(0, str(current_path/"tutorials"))
 sys.path.insert(0, str(current_path.parent))
 
 print("HERE I AM")
-print(sys.path)
 print(current_path)
 print(current_path.parent)
+
+from jupyter_client.kernelspec import KernelSpecManager
+
+ksm = KernelSpecManager()
+kernel_specs = ksm.find_kernel_specs()
+print(kernel_specs)
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.

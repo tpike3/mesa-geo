@@ -15,6 +15,5 @@ dependencies:
       - myst_nb>1 #required for build
       - jupyterlite_sphinx~=0.15.0
       - jupyterlite-xeus>=0.2.0a0
-      - xeus-python>=0.1.9
 
 
