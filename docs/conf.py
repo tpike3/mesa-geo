@@ -94,7 +94,7 @@ jupyterlite_contents = [str(current_path/"tutorials/intro_tutorial.ipynb")]
 
 #jupyterlite_dir = str(Path(__file__).parent.parent / 'build')
 
-jupyterlite_bind_ipynb_suffix = False
+#jupyterlite_bind_ipynb_suffix = False
 
 jupyterlite_build_command_options = {
     "XeusAddon.environment_file": "environment.yml",
