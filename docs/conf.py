@@ -13,6 +13,7 @@
 # serve to show the default.
 
 import sys
+import json
 from pathlib import Path
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -29,11 +30,21 @@ print("HERE I AM")
 print(current_path)
 print(current_path.parent)
 
-from jupyter_client.kernelspec import KernelSpecManager
+def print_kernel_json():
+    kernel_json_path = Path('/home/docs/checkouts/readthedocs.org/user_builds/mesa-geo-test/conda/latest/share/jupyter/kernels/python3/kernel.json')
+    try:
+        if kernel_json_path.is_file():
+            with open(kernel_json_path) as f:
+                kernel_data = json.load(f)
+                print("Contents of kernel.json:")
+                print(json.dumps(kernel_data, indent=4))
+        else:
+            print(f"kernel.json not found at {kernel_json_path}")
+    except Exception as e:
+        print(f"Error reading kernel.json: {e}")
 
-ksm = KernelSpecManager()
-kernel_specs = ksm.find_kernel_specs()
-print(kernel_specs)
+# Call the function to print kernel.json contents
+print_kernel_json()
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
