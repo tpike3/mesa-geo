@@ -23,7 +23,7 @@ current_path = Path(__file__).parent.resolve()
 # Insert the resolved absolute paths into sys.path
 sys.path.insert(0, str(current_path/"examples"))
 sys.path.insert(0, str(current_path/"tutorials"))
-sys.path.insert(0, current_path.parent)
+sys.path.insert(0, str(current_path.parent))
 
 print("HERE I AM")
 print(sys.path)
@@ -47,7 +47,7 @@ extensions = [
     "sphinx.ext.mathjax",
     "sphinx.ext.ifconfig",
     "sphinx.ext.viewcode",
-    #"jupyterlite_sphinx"
+    "jupyterlite_sphinx"
 ]
 
 # Add any paths that contain templates here, relative to this directory.
