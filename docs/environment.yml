@@ -3,7 +3,6 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.10
   - pip>=20.1
   - pip:
       - mesa~=2.3.0
