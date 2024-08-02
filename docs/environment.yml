@@ -4,8 +4,8 @@ channels:
   - conda
   - https://repo.mamba.pm/emscripten-forge
 dependencies:
-  - python==3.10
-  - micromamba
+   # python==3.10
+   # micromamba
   - pip>=20.1
   - pip:
       - mesa~=2.3.0
