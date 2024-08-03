@@ -3,8 +3,8 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - python=3.10
-  - pip=23.3
+  - python=3.12.4
+  - pip=24.2
   - pip:
       - mesa~=2.3.0
       - xyzservices>=2022.9.0
