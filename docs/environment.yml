@@ -1,8 +1,13 @@
 name: mesa_geo
 channels:
+  - https://repo.mamba.pm/emscripten-forge
   - conda-forge
   - defaults
 dependencies:
+  - jupyterlab
+  - sphinx
+  - jupyterlite-sphinx
+  - xeus-python
   - xyzservices>=2022.9.0
   - libpysal~=4.10
   - rtree~=1.2
@@ -11,8 +16,8 @@ dependencies:
   - pip=24.2
   - pip:
       - mesa~=2.3.0
-      - jupyter_bridge=0.3
-      - geopandas=0.14
+      - jupyter_bridge==0.3.5
+      - geopandas==0.14.4
       - myst_nb>1 #required for build
       - ipyleaflet~=0.19.1
       - jupyterlite_sphinx~=0.15.0
