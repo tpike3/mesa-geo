@@ -3,7 +3,7 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - python=3.12.4
+  - python=3.10
   - pip=24.2
   - pip:
       - mesa~=2.3.0
@@ -14,6 +14,7 @@ dependencies:
       - jupyter_bridge==0.3.5
       - geopandas==0.14.4
       - myst_nb>1 #required for build
+      - ipyleaflet~=0.19.1
       - jupyterlite_sphinx~=0.15.0
       - jupyterlite-xeus>=0.2.0a0
 
