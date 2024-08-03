@@ -16,6 +16,7 @@ import sys
 import json
 import os
 from pathlib import Path
+import shutil
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -27,7 +28,7 @@ sys.path.insert(0, str(current_path/"examples"))
 sys.path.insert(0, str(current_path/"tutorials"))
 sys.path.insert(0, str(current_path.parent))
 
-def rename_kernel_directory_and_update_json():
+def create_new_kernel_directory_and_update_json():
     base_path = Path('/home/docs/checkouts/readthedocs.org/user_builds/mesa-geo-test/conda/latest/share/jupyter/kernels/')
     old_kernel_name = "python3"
     new_kernel_name = "mesa_geo"
@@ -38,9 +39,9 @@ def rename_kernel_directory_and_update_json():
     try:
         # Check if the old kernel directory exists
         if old_kernel_path.is_dir():
-            # Rename the kernel directory
-            os.rename(old_kernel_path, new_kernel_path)
-            print(f"Renamed kernel directory from {old_kernel_name} to {new_kernel_name}")
+            # Copy the kernel directory to a new directory
+            shutil.copytree(old_kernel_path, new_kernel_path)
+            print(f"Copied kernel directory from {old_kernel_name} to {new_kernel_name}")
 
             # Path to the kernel.json file in the new directory
             kernel_json_path = new_kernel_path / 'kernel.json'
@@ -49,9 +50,11 @@ def rename_kernel_directory_and_update_json():
             if kernel_json_path.is_file():
                 with open(kernel_json_path) as f:
                     kernel_data = json.load(f)
-                    print(kernel_data)
+                    print("Original kernel.json data:", kernel_data)
+
                 # Update the display name
                 kernel_data['display_name'] = new_kernel_name
+                print("Updated kernel.json data:", kernel_data)
 
                 # Write the changes back to the kernel.json file
                 with open(kernel_json_path, 'w') as f:
@@ -63,10 +66,10 @@ def rename_kernel_directory_and_update_json():
         else:
             print(f"Old kernel directory '{old_kernel_name}' not found at {old_kernel_path}")
     except Exception as e:
-        print(f"Error during kernel directory rename or update: {e}")
+        print(f"Error during kernel directory copy or update: {e}")
 
-# Call the function to rename the directory and update kernel.json
-rename_kernel_directory_and_update_json()
+# Call the function to create a new kernel directory and update kernel.json
+create_new_kernel_directory_and_update_json()
 
 # -- General configuration ------------------------------------------------
 
