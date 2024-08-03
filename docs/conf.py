@@ -27,10 +27,7 @@ sys.path.insert(0, str(current_path/"examples"))
 sys.path.insert(0, str(current_path/"tutorials"))
 sys.path.insert(0, str(current_path.parent))
 
-print("HERE I AM")
-print(current_path)
-print(current_path.parent)
-
+'''
 def rename_kernel_directory_and_update_json():
     base_path = Path('/home/docs/checkouts/readthedocs.org/user_builds/mesa-geo-test/conda/latest/share/jupyter/kernels/')
     old_kernel_name = "python3"
@@ -71,6 +68,7 @@ def rename_kernel_directory_and_update_json():
 
 # Call the function to rename the directory and update kernel.json
 rename_kernel_directory_and_update_json()
+'''
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
