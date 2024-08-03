@@ -1,11 +1,10 @@
 name: mesa_geo
 channels:
   - conda-forge
-  - conda
   - defaults
 dependencies:
-  - python>=3.10
-  - pip>=20.1
+  - python=3.10.5
+  - pip=24.2
   - pip:
       - mesa~=2.3.0
       - xyzservices>=2022.9.0
