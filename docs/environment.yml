@@ -3,10 +3,10 @@ channels:
   #Packages must me noarch
   #See available packages at https://beta.mamba.pm/channels/conda-forge?tab=packages
   #- https://repo.mamba.pm/conda-forge
+  - https://repo.mamba.pm/emscripten-forge
   - conda-forge
-  - nodefaults
 dependencies:
-  - python=3.11
+  - xeus-python
   - pip=24.2
   - pip:
       - mesa~=2.3.0
