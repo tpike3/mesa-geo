@@ -2,7 +2,7 @@ name: mesa_geo
 channels:
   #Packages must me noarch
   #See available packages at https://beta.mamba.pm/channels/conda-forge?tab=packages
-  - https://repo.mamba.pm/conda-forge
+  #- https://repo.mamba.pm/conda-forge
   - conda-forge
   - nodefaults
 dependencies:
