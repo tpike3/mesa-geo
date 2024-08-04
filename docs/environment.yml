@@ -9,7 +9,7 @@ channels:
   - nodefaults
 dependencies:
   - xeus-python
-  - pip=22.3
+  - pip=24.2
   - pip:
       - mesa~=2.3.0
       - folium==0.13.0
