@@ -1,15 +1,15 @@
 name: mesa_geo
 channels:
+  #Packages must me noarch
   #See available packages at https://beta.mamba.pm/channels/emscripten-forge?tab=packages
   - https://repo.mamba.pm/emscripten-forge
   #See available packages at https://beta.mamba.pm/channels/conda-forge?tab=packages
   - https://repo.mamba.pm/conda-forge
-  #Packages must me noarch
   - conda-forge
-  - defaults
+  - nodefaults
 dependencies:
   - xeus-python
-  - pip=22.3
+  - pip=24.2
   - pip:
       - mesa~=2.3.0
       - folium=0.13.0
