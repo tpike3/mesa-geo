@@ -27,7 +27,7 @@ current_path = Path(__file__).parent.resolve()
 sys.path.insert(0, str(current_path/"examples"))
 sys.path.insert(0, str(current_path/"tutorials"))
 sys.path.insert(0, str(current_path.parent))
-
+'''
 def create_new_kernel_directory_and_update_json():
     base_path = Path('/home/docs/checkouts/readthedocs.org/user_builds/mesa-geo-test/conda/latest/share/jupyter/kernels/')
     old_kernel_name = "python3"
@@ -70,7 +70,7 @@ def create_new_kernel_directory_and_update_json():
 
 # Call the function to create a new kernel directory and update kernel.json
 create_new_kernel_directory_and_update_json()
-
+'''
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
