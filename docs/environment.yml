@@ -6,7 +6,7 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - xeus-python
+  - python=3.11
   - pip=24.2
   - pip:
       - mesa~=2.3.0
