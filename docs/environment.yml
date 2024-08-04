@@ -9,10 +9,10 @@ channels:
   - nodefaults
 dependencies:
   - xeus-python
-  - pip=24.2
+  - pip=22.3
   - pip:
       - mesa~=2.3.0
-      - folium=0.13.0
+      - folium==0.13.0
       - rtree==1.2
       - xyzservices>=2022.9.0
       - libpysal~=4.10
