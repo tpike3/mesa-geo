@@ -9,7 +9,7 @@ build:
   tools:
        python: "3.10"
   jobs:
-      pre-build:
+      pre_system_dependencies:
           - pip install myst_nb jupyterlite_sphinx
 
 python:
