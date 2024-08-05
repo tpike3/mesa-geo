@@ -89,7 +89,7 @@ extensions = [
     "sphinx.ext.ifconfig",
     "sphinx.ext.viewcode",
     "myst_nb",
-    "jupyterlie_sphinx",
+    "jupyterlite_sphinx",
 
 ]
 
