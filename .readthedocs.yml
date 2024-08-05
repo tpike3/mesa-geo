@@ -11,10 +11,7 @@ build:
 
 python:
   install:
-      - method: pip
-        path: .
-      - requirements:
-          - docs/requirements.txt
+      - requirements: docs/requirements.txt
 
 pre_build:
   - pip install myst_nb jupyterlite_sphinx
