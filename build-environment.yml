@@ -5,6 +5,7 @@ dependencies:
   - python
   - pip
   - micromamba
+  - myst-nb
   - jupyter_server
   - jupyterlite-core >=0.3.0,<0.4.0
   - pip:
