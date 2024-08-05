@@ -8,10 +8,15 @@ build:
   os: "ubuntu-20.04"
   tools:
        python: "3.10"
+  jobs:
+      pre-build:
+          - pip install myst_nb jupyterlite_sphinx
 
 python:
   install:
       - requirements: docs/requirements.txt
+
+
 
 # Build documentation in the docs/ directory with Sphinx
 sphinx:
