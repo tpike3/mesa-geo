@@ -1,6 +1,6 @@
 
-- myst_nb>1 #required for build
-- jupyterlite_sphinx~=0.15.0
+- myst-nb>1 #required for build
+- jupyterlite-sphinx~=0.15.0
 - mesa~=2.3.0
 - folium==0.13.0
 - rtree==1.2
