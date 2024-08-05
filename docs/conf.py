@@ -80,8 +80,8 @@ create_new_kernel_directory_and_update_json()
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    "myst_nb",
-    "jupyterlite_sphinx",
+    "myst-nb",
+    "jupyterlite-sphinx",
     "sphinx.ext.autodoc",
     "sphinx.ext.doctest",
     "sphinx.ext.intersphinx",
