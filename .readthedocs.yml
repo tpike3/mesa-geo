@@ -13,9 +13,6 @@ python:
   install:
       - requirements: docs/requirements.txt
 
-pre_build:
-  - pip install myst_nb jupyterlite_sphinx
-
 # Build documentation in the docs/ directory with Sphinx
 sphinx:
   configuration: docs/conf.py
