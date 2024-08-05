@@ -7,7 +7,7 @@ channels:
   - conda-forge
 dependencies:
   - xeus-python
-  - micromamba
+  - mamba
   - pip=24.2
   - pip:
       - mesa~=2.3.0
