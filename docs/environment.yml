@@ -7,15 +7,15 @@ channels:
   - conda-forge
 dependencies:
   - xeus-python
+  - rtree=1.2
+  - rasterio
   - pip=24.2
   - pip:
       - mesa~=2.3.0
       - folium==0.13.0
-      - rtree==1.2
       - xyzservices>=2022.9.0
       - libpysal~=4.10
       - jupyter_bridge==0.3.5
-      - rasterio~=1.3.10
       - geopandas==0.14.4
       - myst-nb>1 #required for build
       - ipyleaflet~=0.19.1
