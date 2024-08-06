@@ -7,8 +7,6 @@ channels:
   - conda-forge
 dependencies:
   - xeus-python
-  - rtree=1.2
-  - rasterio
   - pip=24.2
   - pip:
       - mesa~=2.3.0
