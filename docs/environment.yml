@@ -9,6 +9,8 @@ dependencies:
   #- xeus-python
   - pip=24.2
   - pip:
+      - jupyter_bridge==0.3.5
+      - jupyterlite-xeus >=0.2.0a0
       - mesa~=2.3.0
 
 
