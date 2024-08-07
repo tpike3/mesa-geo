@@ -14,8 +14,8 @@ dependencies:
   - xyzservices>=2022.9.0
   - libpysal~=4.10
   - rasterio
-  - jupyter_server
-  - jupyterlite-core >=0.3.0,<0.4.0
+  #- jupyter_server
+  #- jupyterlite-core >=0.3.0,<0.4.0
   - pip:
       - .
       - jupyterlite-xeus >=0.2.0a0
