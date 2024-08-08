@@ -8,7 +8,6 @@ channels:
 dependencies:
   - xeus-python #needed to get kernel
   - numpy=1.26
-  - jupyterlite-sphinx
   - geopandas=0.14.4
   - rtree=1.2
   - ipyleaflet=0.19
