@@ -6,10 +6,20 @@ channels:
   - https://repo.mamba.pm/emscripten-forge
   - conda-forge
 dependencies:
-  - xeus-python
+  - xeus-python #needed to get kernel
+  - numpy=1.26
+  - jupyterlite-sphinx
+  - geopandas=0.14.4
+  - rtree=1.2
+  - ipyleaflet=0.19
+  - folium==0.13.0
+  - xyzservices>=2022.9.0
+  - libpysal=4.10
+  - rasterio
   - pip=24.2
   - pip:
       - mesa~=2.3.0
+      - jupyter_bridge==0.3.5
 
 
 
