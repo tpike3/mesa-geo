@@ -13,7 +13,6 @@ dependencies:
   - xyzservices>=2022.9.0
   - pip=24.2
   - pip:
-      - tqdm>=4.66
       - mesa~=2.3.0
       - jupyter_bridge==0.3.5
 
