@@ -10,6 +10,7 @@ dependencies:
   - rtree=1.2
   - rasterio
   - geopandas=0.14.4
+  - libpysal=4.10
   - jupyter_server
   - jupyterlite-core >=0.3.0,<0.4.0
   - pip:
