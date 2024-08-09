@@ -8,6 +8,7 @@ channels:
 dependencies:
   - xeus-python #needed to get kernel
   - numpy=1.26
+  - geopandas=0.14.4
   - ipyleaflet=0.19
   - folium=0.13.0
   - xyzservices>=2022.9.0
