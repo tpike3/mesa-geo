@@ -11,6 +11,7 @@ dependencies:
   - ipyleaflet=0.19
   - folium=0.13.0
   - xyzservices>=2022.9.0
+  - tqdm>=4.66
   - pip=24.2
   - pip:
       - mesa~=2.3.0
