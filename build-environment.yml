@@ -9,6 +9,7 @@ dependencies:
   - jupyterlite-sphinx
   - rtree=1.2
   - rasterio
+  - fiona>=1.8
   - jupyter_server
   - jupyterlite-core >=0.3.0,<0.4.0
   - pip:
