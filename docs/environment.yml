@@ -2,12 +2,13 @@ name: mesa_geo
 channels:
   #Packages must me noarch
   #See available packages at https://beta.mamba.pm/channels/conda-forge?tab=packages
-  #- https://repo.mamba.pm/conda-forge
+  - https://repo.mamba.pm/conda-forge
   - https://repo.mamba.pm/emscripten-forge
   - conda-forge
 dependencies:
   - xeus-python #needed to get kernel
   - numpy=1.26
+  - fiona>=1.8
   - geopandas=0.14.4
   - ipyleaflet=0.19
   - folium=0.13.0
