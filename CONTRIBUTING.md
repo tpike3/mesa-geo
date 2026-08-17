@@ -1,7 +1,7 @@
 Contributing
 ============
 
-As an open source project, Mesa-Geo welcomes contributions of many forms, and from beginners to experts. If you are curious or just want to see what is happening, we post our development session agendas and development session notes on [Mesa discussions]. We also have a threaded discussion forum on [Matrix] for casual conversation.
+As an open source project, Mesa-Geo welcomes contributions of many forms, and from beginners to experts. If you are curious or just want to see what is happening, we post our development session agendas and development session notes on [Mesa discussions]. We also have a `#mesa-geo` channel on [Discord] for casual conversation.
 
 In no particular order, examples include:
 
@@ -11,13 +11,13 @@ In no particular order, examples include:
 - Documentation improvements
 - Tutorials
 
-No contribution is too small. Although, contributions can be too big, so let's discuss via [Matrix] or via an [issue].
+No contribution is too small. Although, contributions can be too big, so let's discuss via [Discord] or via an [issue].
 
 > [!NOTE]
 > For Mesa-wide contribution process and development expectations, see [Mesa CONTRIBUTING].
 
 [Mesa discussions]: https://github.com/mesa/mesa/discussions
-[Matrix]: https://matrix.to/#/#project-mesa:matrix.org
+[Discord]: https://discord.gg/T6Ygmexgh2
 [issue]: https://github.com/mesa/mesa-geo/issues
 [Mesa CONTRIBUTING]: https://github.com/mesa/mesa/blob/main/CONTRIBUTING.md
 
