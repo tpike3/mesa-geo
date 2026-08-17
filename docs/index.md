@@ -7,7 +7,7 @@
 [![PyPI](https://img.shields.io/pypi/v/mesa-geo.svg)](https://pypi.org/project/mesa-geo)
 [![PyPI - License](https://img.shields.io/pypi/l/mesa-geo)](https://pypi.org/project/mesa-geo/)
 [![PyPI - Downloads](https://img.shields.io/pypi/dw/mesa-geo)](https://pypistats.org/packages/mesa-geo)
-[![Matrix Chat](https://img.shields.io/matrix/mesa-geo:matrix.org?label=chat&logo=Matrix)](https://matrix.to/#/#mesa-geo:matrix.org)
+[![Discord Chat](https://img.shields.io/badge/chat-Discord-5865F2?logo=discord&logoColor=white)](https://discord.gg/T6Ygmexgh2)
 [![DOI](https://zenodo.org/badge/DOI/10.1145/3557989.3566157.svg)](https://doi.org/10.1145/3557989.3566157)
 
 Mesa-Geo implements a `GeoSpace` that can host GIS-based `GeoAgents`, which are like normal Agents, except they have a `geometry` attribute that is a [Shapely object](https://shapely.readthedocs.io/en/latest/manual.html) and a `crs` attribute for its Coordinate Reference System. You can use `Shapely` directly to create arbitrary geometries, but in most cases you will want to import your geometries from a file. Mesa-Geo allows you to create GeoAgents from any vector data file (e.g. shapefiles), valid GeoJSON objects or a GeoPandas GeoDataFrame.
@@ -46,7 +46,7 @@ For more help on using Mesa-Geo, check out the following resources:
 
 Want to join the team or just curious about what is happening with Mesa & Mesa-Geo? You can...
 
-  * Join our [Matrix chat room](https://matrix.to/#/#mesa-geo:matrix.org) in which questions, issues, and ideas can be (informally) discussed.
+  * Join the [Mesa Discord server](https://discord.gg/T6Ygmexgh2) and visit its `#mesa-geo` channel, where questions, issues, and ideas can be informally discussed.
   * Come to a monthly dev session (you can find dev session times, agendas and notes at [Mesa discussions](https://github.com/mesa/mesa/discussions).
   * Just check out the code at [GitHub](https://github.com/mesa/mesa-geo/).
 
